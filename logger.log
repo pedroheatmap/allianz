@@ -1,0 +1,68 @@
+2025-05-13 17:10:31,111 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-13 17:10:31,111 - [33mPress CTRL+C to quit[0m
+2025-05-13 17:10:31,113 -  * Restarting with stat
+2025-05-13 17:10:31,461 -  * Debugger is active!
+2025-05-13 17:10:31,464 -  * Debugger PIN: 722-296-555
+2025-05-13 17:10:49,739 - 127.0.0.1 - - [13/May/2025 17:10:49] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-13 17:10:49,748 - 127.0.0.1 - - [13/May/2025 17:10:49] "GET /login HTTP/1.1" 200 -
+2025-05-13 17:10:49,982 - 127.0.0.1 - - [13/May/2025 17:10:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-13 17:11:00,146 - 127.0.0.1 - - [13/May/2025 17:11:00] "POST /login HTTP/1.1" 200 -
+2025-05-13 17:11:11,377 - 127.0.0.1 - - [13/May/2025 17:11:11] "GET /login HTTP/1.1" 200 -
+2025-05-13 17:11:13,076 - 127.0.0.1 - - [13/May/2025 17:11:13] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-05-13 17:11:13,403 - 127.0.0.1 - - [13/May/2025 17:11:13] "GET / HTTP/1.1" 200 -
+2025-05-13 17:11:13,729 - 127.0.0.1 - - [13/May/2025 17:11:13] "[33mGET /car10.png HTTP/1.1[0m" 404 -
+2025-05-13 17:11:13,989 - Allianz buscou: {}
+2025-05-13 17:11:13,990 - 127.0.0.1 - - [13/May/2025 17:11:13] "POST /log HTTP/1.1" 200 -
+2025-05-13 17:11:14,204 - 127.0.0.1 - - [13/May/2025 17:11:14] "GET /vistoriadores.xlsx HTTP/1.1" 200 -
+2025-05-13 17:16:35,271 - 127.0.0.1 - - [13/May/2025 17:16:35] "GET / HTTP/1.1" 200 -
+2025-05-13 17:16:35,285 - 127.0.0.1 - - [13/May/2025 17:16:35] "[33mGET /car10.png HTTP/1.1[0m" 404 -
+2025-05-13 17:16:35,526 - Allianz buscou: {}
+2025-05-13 17:16:35,527 - 127.0.0.1 - - [13/May/2025 17:16:35] "POST /log HTTP/1.1" 200 -
+2025-05-13 17:16:35,740 - 127.0.0.1 - - [13/May/2025 17:16:35] "[36mGET /vistoriadores.xlsx HTTP/1.1[0m" 304 -
+2025-05-13 17:16:42,516 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-13 17:16:42,517 - [33mPress CTRL+C to quit[0m
+2025-05-13 17:16:42,517 -  * Restarting with stat
+2025-05-13 17:16:42,833 -  * Debugger is active!
+2025-05-13 17:16:42,835 -  * Debugger PIN: 722-296-555
+2025-05-13 17:17:01,258 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-13 17:17:01,258 - [33mPress CTRL+C to quit[0m
+2025-05-13 17:17:01,259 -  * Restarting with stat
+2025-05-13 17:17:01,617 -  * Debugger is active!
+2025-05-13 17:17:01,620 -  * Debugger PIN: 722-296-555
+2025-05-13 17:17:02,322 - 127.0.0.1 - - [13/May/2025 17:17:02] "GET / HTTP/1.1" 200 -
+2025-05-13 17:17:02,339 - 127.0.0.1 - - [13/May/2025 17:17:02] "[33mGET /car10.png HTTP/1.1[0m" 404 -
+2025-05-13 17:17:02,565 - Allianz buscou: {}
+2025-05-13 17:17:02,566 - 127.0.0.1 - - [13/May/2025 17:17:02] "POST /log HTTP/1.1" 200 -
+2025-05-13 17:17:02,765 - 127.0.0.1 - - [13/May/2025 17:17:02] "[36mGET /vistoriadores.xlsx HTTP/1.1[0m" 304 -
+2025-05-13 17:26:13,625 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-13 17:26:13,625 - [33mPress CTRL+C to quit[0m
+2025-05-13 17:26:13,626 -  * Restarting with stat
+2025-05-13 17:26:13,907 -  * Debugger is active!
+2025-05-13 17:26:13,909 -  * Debugger PIN: 722-296-555
+2025-05-13 17:26:18,986 - 127.0.0.1 - - [13/May/2025 17:26:18] "GET / HTTP/1.1" 200 -
+2025-05-13 17:26:19,004 - 127.0.0.1 - - [13/May/2025 17:26:19] "[33mGET /car10.png HTTP/1.1[0m" 404 -
+2025-05-13 17:26:19,297 - 127.0.0.1 - - [13/May/2025 17:26:19] "[36mGET /vistoriadores.xlsx HTTP/1.1[0m" 304 -
+2025-05-13 17:26:23,687 - Allianz buscou: avenida ricardo jafet
+2025-05-13 17:26:23,688 - 127.0.0.1 - - [13/May/2025 17:26:23] "POST /log HTTP/1.1" 200 -
+2025-05-13 17:26:38,131 - 127.0.0.1 - - [13/May/2025 17:26:38] "GET / HTTP/1.1" 200 -
+2025-05-13 17:26:38,440 - 127.0.0.1 - - [13/May/2025 17:26:38] "[36mGET /vistoriadores.xlsx HTTP/1.1[0m" 304 -
+2025-05-13 17:26:38,495 - 127.0.0.1 - - [13/May/2025 17:26:38] "[33mGET /car10.png HTTP/1.1[0m" 404 -
+2025-05-13 17:26:41,123 - Allianz buscou: Rua alegre 470 - São Caetano do Sul
+2025-05-13 17:26:41,124 - 127.0.0.1 - - [13/May/2025 17:26:41] "POST /log HTTP/1.1" 200 -
+2025-05-13 17:35:00,676 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-05-13 17:35:00,676 - [33mPress CTRL+C to quit[0m
+2025-05-13 17:35:00,677 -  * Restarting with stat
+2025-05-13 17:35:00,940 -  * Debugger is active!
+2025-05-13 17:35:00,942 -  * Debugger PIN: 722-296-555
+2025-05-13 17:35:03,488 - 127.0.0.1 - - [13/May/2025 17:35:03] "GET / HTTP/1.1" 200 -
+2025-05-13 17:35:03,526 - 127.0.0.1 - - [13/May/2025 17:35:03] "[33mGET /car10.png HTTP/1.1[0m" 404 -
+2025-05-13 17:35:03,788 - 127.0.0.1 - - [13/May/2025 17:35:03] "[36mGET /vistoriadores.xlsx HTTP/1.1[0m" 304 -
+2025-05-13 17:35:11,732 - Allianz buscou: Rua alegre 470 - São Caetano do Sul
+2025-05-13 17:35:11,733 - 127.0.0.1 - - [13/May/2025 17:35:11] "POST /log HTTP/1.1" 200 -
+2025-05-13 17:35:18,056 - Allianz buscou: brasilia
+2025-05-13 17:35:18,056 - 127.0.0.1 - - [13/May/2025 17:35:18] "POST /log HTTP/1.1" 200 -
