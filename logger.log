@@ -51,7 +51,7 @@
 2025-05-13 17:26:38,131 - 127.0.0.1 - - [13/May/2025 17:26:38] "GET / HTTP/1.1" 200 -
 2025-05-13 17:26:38,440 - 127.0.0.1 - - [13/May/2025 17:26:38] "[36mGET /vistoriadores.xlsx HTTP/1.1[0m" 304 -
 2025-05-13 17:26:38,495 - 127.0.0.1 - - [13/May/2025 17:26:38] "[33mGET /car10.png HTTP/1.1[0m" 404 -
-2025-05-13 17:26:41,123 - Allianz buscou: Rua alegre 470 - São Caetano do Sul
+2025-05-13 17:26:41,123 - Allianz buscou: Rua alegre 470 - Sï¿½o Caetano do Sul
 2025-05-13 17:26:41,124 - 127.0.0.1 - - [13/May/2025 17:26:41] "POST /log HTTP/1.1" 200 -
 2025-05-13 17:35:00,676 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
  * Running on http://127.0.0.1:5000
@@ -62,7 +62,21 @@
 2025-05-13 17:35:03,488 - 127.0.0.1 - - [13/May/2025 17:35:03] "GET / HTTP/1.1" 200 -
 2025-05-13 17:35:03,526 - 127.0.0.1 - - [13/May/2025 17:35:03] "[33mGET /car10.png HTTP/1.1[0m" 404 -
 2025-05-13 17:35:03,788 - 127.0.0.1 - - [13/May/2025 17:35:03] "[36mGET /vistoriadores.xlsx HTTP/1.1[0m" 304 -
-2025-05-13 17:35:11,732 - Allianz buscou: Rua alegre 470 - São Caetano do Sul
+2025-05-13 17:35:11,732 - Allianz buscou: Rua alegre 470 - Sï¿½o Caetano do Sul
 2025-05-13 17:35:11,733 - 127.0.0.1 - - [13/May/2025 17:35:11] "POST /log HTTP/1.1" 200 -
 2025-05-13 17:35:18,056 - Allianz buscou: brasilia
 2025-05-13 17:35:18,056 - 127.0.0.1 - - [13/May/2025 17:35:18] "POST /log HTTP/1.1" 200 -
+2025-05-14 07:52:53,089 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.117:5000
+2025-05-14 07:52:53,089 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-05-14 07:52:56,381 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:52:56] "[32mGET / HTTP/1.1[0m" 302 -
+2025-05-14 07:52:56,389 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:52:56] "GET /login HTTP/1.1" 200 -
+2025-05-14 07:52:56,434 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:52:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-05-14 07:53:13,948 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:53:13] "[32mPOST /login HTTP/1.1[0m" 302 -
+2025-05-14 07:53:13,962 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:53:13] "GET / HTTP/1.1" 200 -
+2025-05-14 07:53:14,011 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:53:14] "[33mGET /car10.png HTTP/1.1[0m" 404 -
+2025-05-14 07:53:14,360 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:53:14] "GET /vistoriadores.xlsx HTTP/1.1" 200 -
+2025-05-14 07:53:29,401 - root - INFO - Allianz buscou: Rua alegre 470 - Sï¿½o Caetano do Sul
+2025-05-14 07:53:29,402 - werkzeug - INFO - 127.0.0.1 - - [14/May/2025 07:53:29] "POST /log HTTP/1.1" 200 -

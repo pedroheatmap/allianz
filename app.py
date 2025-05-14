@@ -3,6 +3,17 @@ from functools import wraps
 import logging
 import json
 import os
+import sys
+
+# Modifique a configuração do logger para:
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('logger.log'),  # Arquivo local
+        logging.StreamHandler(sys.stdout)   # Saída para o Render
+    ]
+)
 
 app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta_aqui'
