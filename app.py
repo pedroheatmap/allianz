@@ -45,13 +45,138 @@ def login():
         if usuario in USERS and USERS[usuario] == senha:
             session['username'] = usuario
             return redirect(url_for('index'))
-        return 'Usuário ou senha inválidos'
+        return '''
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Login</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f4f4f9;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                }
+                .login-container {
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                    width: 300px;
+                    text-align: center;
+                }
+                .login-container h2 {
+                    margin-bottom: 1.5rem;
+                    color: #333;
+                }
+                .login-container input {
+                    width: 100%;
+                    padding: 0.75rem;
+                    margin: 0.5rem 0;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                }
+                .login-container button {
+                  width: 100%;
+                   padding: 0.75rem;
+                  background-color: #e73d3d;  /* Novo vermelho */
+                 color: white;
+                   border: none;
+                   border-radius: 4px;
+                 cursor: pointer;
+                 font-size: 1rem;
+                  margin-top: 1rem;
+}
+                .login-container button:hover {
+                   background-color: #c53131;  /* Vermelho mais escuro para o hover */
+                 }                   
+                .error-message {
+                    color: #dc3545;
+                    margin-top: 1rem;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="login-container">
+                <h2>Login</h2>
+                <form method="post">
+                    <input name="username" placeholder="Usuário" required><br>
+                    <input name="password" type="password" placeholder="Senha" required><br>
+                    <button type="submit">Entrar</button>
+                </form>
+                <div class="error-message">Usuário ou senha inválidos</div>
+            </div>
+        </body>
+        </html>
+        '''
     return '''
-        <form method="post">
-            <input name="username" placeholder="Usuário"><br>
-            <input name="password" type="password" placeholder="Senha"><br>
-            <button type="submit">Entrar</button>
-        </form>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Login</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .login-container {
+                background: white;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 300px;
+                text-align: center;
+            }
+            .login-container h2 {
+                margin-bottom: 1.5rem;
+                color: #333;
+            }
+            .login-container input {
+                width: 100%;
+                padding: 0.75rem;
+                margin: 0.5rem 0;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-sizing: border-box;
+            }
+            .login-container button {
+                width: 100%;
+                padding: 0.75rem;
+                background-color: #e73d3d;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 1rem;
+                margin-top: 1rem;
+            }
+            .login-container button:hover {
+                background-color: #c53131;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="login-container">
+            <h2>Login</h2>
+            <form method="post">
+                <input name="username" placeholder="Usuário" required><br>
+                <input name="password" type="password" placeholder="Senha" required><br>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </body>
+    </html>
     '''
 
 # Página principal com autenticação
