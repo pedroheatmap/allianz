@@ -1362,25 +1362,29 @@ def exportar_sugestoes():
     try:
         raio = int(request.args.get('raio'))
         
+        # Limitar o número máximo de sugestões para 100 (em vez de 200)
+        MAX_SUGESTOES = 100
+        
         # Usar dados pré-processados se disponíveis
         if raio in CLUSTERS_PREPROCESSED:
             preprocessed = CLUSTERS_PREPROCESSED[raio]
             clientes_nao_cobertos = preprocessed['clientes_nao_cobertos']
             kmeans = preprocessed['kmeans']
         else:
-            # Calcular na hora se não tiver pré-processado
-            mascara_nao_cobertos = np.ones(len(coords_clientes), dtype=bool)
+            # Usar amostra menor de clientes para cálculo mais rápido
+            sample_size = min(10000, len(coords_clientes))
+            clientes_sample = coords_clientes[np.random.choice(len(coords_clientes), sample_size, replace=False)]
             
-            for i in range(0, len(coords_clientes), LOTE_CLIENTES):
-                lote = coords_clientes[i:i+LOTE_CLIENTES]
-                distancias = calcular_distancia_lote(lote, coords_oficinas)
-                mascara_nao_cobertos[i:i+len(lote)] = ~np.any(distancias <= raio, axis=0)
+            mascara_nao_cobertos = np.ones(len(clientes_sample), dtype=bool)
             
-            clientes_nao_cobertos = coords_clientes[mascara_nao_cobertos]
+            distancias = calcular_distancia_lote(clientes_sample, coords_oficinas)
+            mascara_nao_cobertos = ~np.any(distancias <= raio, axis=0)
+            
+            clientes_nao_cobertos = clientes_sample[mascara_nao_cobertos]
             
             if len(clientes_nao_cobertos) > 0:
-                n_clusters = min(200, max(1, len(clientes_nao_cobertos) // 100))
-                kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
+                n_clusters = min(50, max(1, len(clientes_nao_cobertos) // 200))  # Menos clusters
+                kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=5)  # Menos inicializações
                 kmeans.fit(clientes_nao_cobertos)
             else:
                 kmeans = None
@@ -1388,13 +1392,13 @@ def exportar_sugestoes():
         if len(clientes_nao_cobertos) == 0 or kmeans is None:
             return jsonify({'error': 'Nenhum cliente não coberto encontrado'}), 400
         
-        # Gerar sugestões (limitado a 200)
+        # Gerar sugestões (limitado a MAX_SUGESTOES)
         sugestoes = []
         for cluster_id in range(kmeans.n_clusters):
             mascara_cluster = (kmeans.labels_ == cluster_id)
             clientes_cluster = clientes_nao_cobertos[mascara_cluster]
             
-            if len(clientes_cluster) < 30:
+            if len(clientes_cluster) < 50:  # Aumentar o limite mínimo
                 continue
                 
             centro = kmeans.cluster_centers_[cluster_id]
@@ -1403,14 +1407,18 @@ def exportar_sugestoes():
             if not coordenada_no_brasil(lat, lon):
                 continue
                 
-            distancias_total = calcular_distancia_lote(coords_clientes, [centro])
-            total_beneficiados = np.sum(distancias_total <= raio)
+            # Calcular com amostra menor para maior velocidade
+            sample_size = min(5000, len(coords_clientes))
+            sample = coords_clientes[np.random.choice(len(coords_clientes), sample_size, replace=False)]
+            
+            distancias_total = calcular_distancia_lote(sample, [centro])
+            total_beneficiados = np.sum(distancias_total <= raio) * (len(coords_clientes)/sample_size)
             
             distancias_novos = calcular_distancia_lote(clientes_nao_cobertos, [centro])
             clientes_novos = np.sum(distancias_novos <= raio)
             
-            # Obter cidade com cache
-            cidade = get_cidade(lat, lon)
+            # Obter cidade apenas se realmente necessário
+            cidade = "A definir"  # Remover consulta para acelerar
             
             sugestoes.append({
                 'Latitude': float(lat),
@@ -1421,41 +1429,14 @@ def exportar_sugestoes():
                 'Score': float(clientes_novos)
             })
         
-        # Ordenar e pegar as top 200
-        sugestoes = sorted(sugestoes, key=lambda x: -x['Score'])[:200]
-        
-        # Se não tivermos 200, completar com pontos aleatórios
-        if len(sugestoes) < 200 and len(clientes_nao_cobertos) > 0:
-            n_adicionais = min(200 - len(sugestoes), len(clientes_nao_cobertos))
-            for ponto in clientes_nao_cobertos[np.random.choice(len(clientes_nao_cobertos), n_adicionais, replace=False)]:
-                lat, lon = ponto[0], ponto[1]
-                
-                distancias_total = calcular_distancia_lote(coords_clientes, [[lat, lon]])
-                total_beneficiados = np.sum(distancias_total <= raio)
-                
-                distancias_novos = calcular_distancia_lote(clientes_nao_cobertos, [[lat, lon]])
-                clientes_novos = np.sum(distancias_novos <= raio)
-                
-                sugestoes.append({
-                    'Latitude': float(lat),
-                    'Longitude': float(lon),
-                    'Clientes_Potenciais': int(total_beneficiados),
-                    'Clientes_Novos': int(clientes_novos),
-                    'Cidade': get_cidade(lat, lon),
-                    'Score': float(clientes_novos)
-                })
+        # Ordenar e pegar as top MAX_SUGESTOES
+        sugestoes = sorted(sugestoes, key=lambda x: -x['Score'])[:MAX_SUGESTOES]
         
         # Criar DataFrame e exportar
         df_sugestoes = pd.DataFrame(sugestoes)
         
-        # Adicionar métricas
-        clientes_cobertos_mask = np.zeros(len(clientes_nao_cobertos), dtype=bool)
-        for sugestao in sugestoes:
-            centro = np.array([[sugestao['Latitude'], sugestao['Longitude']]])
-            distancias = calcular_distancia_lote(clientes_nao_cobertos, centro)
-            clientes_cobertos_mask |= (distancias <= raio).flatten()
-        
-        clientes_unicos_cobertos = np.sum(clientes_cobertos_mask)
+        # Métricas simplificadas
+        clientes_unicos_cobertos = sum(s['Clientes_Novos'] for s in sugestoes)
         
         output = BytesIO()
         with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
@@ -1464,8 +1445,8 @@ def exportar_sugestoes():
             pd.DataFrame({
                 'Métrica': [
                     'Raio (km)',
-                    'Clientes Descobertos',
-                    'Clientes que Serão Cobertos (únicos)',
+                    'Clientes Descobertos (estimado)',
+                    'Clientes que Serão Cobertos (estimado)',
                     'Sugestões Geradas',
                     'Data'
                 ],
@@ -1483,7 +1464,7 @@ def exportar_sugestoes():
             output,
             mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             as_attachment=True,
-            download_name=f"sugestoes_oficinas_top200_{raio}km_{datetime.now().strftime('%Y%m%d')}.xlsx"
+            download_name=f"sugestoes_oficinas_top{MAX_SUGESTOES}_{raio}km_{datetime.now().strftime('%Y%m%d')}.xlsx"
         )
     
     except Exception as e:
